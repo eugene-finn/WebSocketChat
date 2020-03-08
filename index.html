@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebSocket Chat</title>
+</head>
+
+<body>
+  <div class="auth">
+    <form action="" class="auth__form">
+      <div class="auth__form-row">
+        <input type="text" placeholder="Ваше имя" class="auth__input-name" name="name" />
+      </div>
+      <div class="auth__form-row">
+        <input type="text" placeholder="Ваш логин" class="auth__input-login" name="login" />
+      </div>
+      <div class="auth__form-row">
+        <button class="auth__enter">Войти</button>
+      </div>
+    </form>
+  </div>
+  <div class="chat">
+    <div class="chat__users">
+      <ul class="chat__users-list"></ul>
+    </div>
+    <div class="messages">
+      <div class="messages__list">
+        <ul class="messages__list-ul"></ul>
+      </div>
+      <input type="text" placeholder="Введите сообщение..." class="chat__messages-text" name="text" />
+      <button class="messages__sendButton">Отправить</button>
+    </div>
+  </div>
+</body>
+
+
+    <script src="./client.js"></script>
+  </body>
+</html>
