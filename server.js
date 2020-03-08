@@ -1,20 +1,29 @@
-var http = require("http"),
-  fs = require("fs");
+const express = require("express");
+const server = express();
+const expressWs = require("express-ws")(server);
+const port = 4000;
+const massa = [];
 
-const hostname = 'localhost';
-const port = 3000;
+server.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 
-fs.readFile("./index.html", function(err, html) {
-  if (err) {
-    throw err;
-  }
-  http
-    .createServer(function(req, res) {
-      res.writeHeader(200, { "Content-Type": "text/html" });
-      res.write(html);
-      res.end();
-    })
-    .listen(port, hostname, () => {
-      console.log(`Server running at http://${hostname}:${port}/`);
-    });
+server.get("/client.js", (req, res) => {
+  res.sendFile(__dirname + "/client.js");
+});
+
+server.ws("/", function(ws, req) {
+  ws.on("message", function(msg) {
+    massa.push(msg);
+    console.log(massa);
+    ws.send("message", msg);
+  });
+
+  console.log("socket", req.testing);
+});
+
+//
+
+server.listen(port, () => {
+  console.log(`Server listening at ${port}`);
 });
