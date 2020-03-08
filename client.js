@@ -1,10 +1,14 @@
-const socket = new WebSocket("ws://localhost:8080");
-const messageText = document.querySelector(".chat__messagesText");
+const socket = new WebSocket("ws://localhost:4000");
+const messageText = document.querySelector(".chat__messages-text");
 const sendButton = document.querySelector(".messages__sendButton");
 const listContainer = document.querySelector(".messages__listContainer");
 
+socket.onopen = () => {
+  console.log("handshake express-ws ");
+};
 socket.addEventListener("message", e => {
   addMessage(event.data);
+  console.log("Соединение закрыто");
 });
 
 socket.addEventListener("error", e => {
